@@ -1,0 +1,30 @@
+/* public/style.css */
+@import "tailwindcss";
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+canvas {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+#solarCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Lower than info panel */
+}
+#planetInfo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 1000; /* Make sure it's above everything */
+  background: rgba(0,0,0,0.8);
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+}

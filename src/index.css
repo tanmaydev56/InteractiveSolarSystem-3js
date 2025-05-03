@@ -1,30 +1,169 @@
-/* public/style.css */
-@import "tailwindcss";
+
+
 body, html {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Space Mono', monospace;
+    color: #e2e8f0;
+    background-color: #0a0e24;
 }
+
 canvas {
-  display: block;
+    display: block;
 }
+
 .hidden {
-  display: none;
+    display: none;
 }
+
+/* Solar System Canvas */
 #solarCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0; /* Lower than info panel */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
-#planetInfo {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 300px;
-  z-index: 1000; /* Make sure it's above everything */
-  background: rgba(0,0,0,0.8);
-  padding: 15px;
-  border-radius: 8px;
-  color: white;
+
+/* Loading Screen */
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0e24;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #7aa2f7;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Planet Information Panel */
+.planet-info {
+    background: linear-gradient(145deg, rgba(11, 15, 41, 0.95) 0%, rgba(22, 25, 65, 0.95) 100%);
+    border: 1px solid rgba(100, 150, 255, 0.2);
+    box-shadow: 0 0 30px rgba(65, 120, 255, 0.2), 
+                0 0 10px rgba(100, 200, 255, 0.1) inset;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease-out;
+}
+
+.planet-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.5), transparent);
+}
+
+.close-btn {
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(100, 200, 255, 0.3);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+}
+
+.info-label {
+    color: #7aa2f7;
+    font-weight: bold;
+}
+
+.highlight {
+    background: rgba(122, 162, 247, 0.15);
+    border-left: 3px solid #7aa2f7;
+}
+
+/* Comparison Controls */
+#comparison-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#comparison-controls select, 
+#comparison-controls button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Comparison States */
+.comparison-active {
+    filter: blur(2px) brightness(0.7);
+    transition: all 0.3s ease;
+}
+
+.comparison-close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    padding: 10px 15px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.comparison-close-btn:hover {
+    background: rgba(255,50,50,0.5);
+}
+
+/* Floating Controls */
+.control-btn {
+    background: rgba(30, 41, 59, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: rgba(30, 41, 59, 0.9);
+    transform: scale(1.1);
 }

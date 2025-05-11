@@ -640,10 +640,12 @@ function createSpaceLabel(planetName, planetSize) {
   return sprite;
 }
 
+
+
 function animate() {
   requestAnimationFrame(animate);
   
-  // Original planet animation logic
+  // Solar system animations only
   planets.forEach(p => {
     p.orbit.rotation.y += p.speed;
     p.planet.rotation.y += 0.005;
@@ -654,18 +656,15 @@ function animate() {
       }
     });
 
-    // Update gravity field lines position if they exist
+    // Gravity field lines animation
     if (gravityFields && showGravity) {
       gravityFields.children.forEach(line => {
         if (line.userData.planet === p.name) {
-          // Get the planet's world position
           const planetPosition = p.planet.getWorldPosition(new THREE.Vector3());
           line.position.copy(planetPosition);
           
-          // Pulsing opacity effect
           line.material.opacity = 0.3 + Math.sin(Date.now() * 0.001 + line.userData.offset) * 0.2;
           
-          // Gentle undulation/wave effect
           const positions = line.geometry.attributes.position;
           const basePositions = line.geometry.attributes.basePosition || positions.clone();
           
@@ -684,12 +683,12 @@ function animate() {
     }
   });
 
-  // Original camera and rendering
+  // Sun rotation
+  sun.rotation.y += 0.001;
+  
+  // Always update controls and render
   controls.update();
   renderer.render(scene, camera);
-  
-  // Optional: Rotate the sun
-  sun.rotation.y += 0.001;
 }
 
 function onMouseMove(event) {

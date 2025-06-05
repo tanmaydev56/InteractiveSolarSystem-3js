@@ -1,8 +1,7 @@
 
 ### Solar System Visualization with Three.js
 
-![Solar System Screenshot](!(https://github.com/user-attachments/assets/fd5cfc8a-92ae-46ea-8278-a347f80e1839)
-) 
+![Solar System Screenshot](https://github.com/user-attachments/assets/fd5cfc8a-92ae-46ea-8278-a347f80e1839)
 
 An interactive 3D model of our solar system built with Three.js. Explore the planets, view detailed information, and visualize gravitational fields in this immersive web experience.
 
